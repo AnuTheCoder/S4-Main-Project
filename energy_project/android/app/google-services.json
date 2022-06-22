@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "996102129050",
+    "firebase_url": "https://test-9911b-default-rtdb.firebaseio.com",
+    "project_id": "test-9911b",
+    "storage_bucket": "test-9911b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996102129050:android:f5439016e344ebd2da2623",
+        "android_client_info": {
+          "package_name": "com.example.energy_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996102129050-742jcsi05ta8jhdlmvg6p14tgtrm8tuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4p9z98ueBJfmHW93bA62A5-JmRjNdd4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996102129050-742jcsi05ta8jhdlmvg6p14tgtrm8tuf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "996102129050-ihkto87pj64lbli9e5vvq6ks71oot7j1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.energyProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
