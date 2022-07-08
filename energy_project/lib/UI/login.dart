@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.lightBlueAccent,
 
       ///Body
 
@@ -36,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                 padding: const EdgeInsets.all(30),
-                height: MediaQuery.of(context).size.height * 0.46,
-                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.56,
+                width: MediaQuery.of(context).size.width * 0.9,
                 decoration:  BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
@@ -187,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: MediaQuery.of(context).size.width * 0.63,
                           child: const Center(
                             child: Text(
-                              'LOG-IN',
+                              'LOGIN',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 13,
@@ -196,33 +196,6 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                         GestureDetector(
-                           child: const Text('Does not have account?',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                               ),
-                        ),
-                           onTap: (){
-
-                           },
-                         ),
-                        TextButton(
-                          child:  const Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                fontSize: 20,
-                            ),
-                          ),
-                          onPressed: () {
-                            //signup screen
-                          },
-                        )
-                      ],
                     ),
                   ],
                 ),

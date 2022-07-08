@@ -14,8 +14,8 @@ class Bill extends StatefulWidget {
   final thirdcurrent;
   final voltage;
 
-   const Bill({Key? key, required this.firstTotalTime, required this.secondTotalTime, required this.thirdTotalTime, required this.firstcurrent, required this.secondcurrent, required this.thirdcurrent, required this.voltage})
-       : super(key: key);
+  const Bill({Key? key, required this.firstTotalTime, required this.secondTotalTime, required this.thirdTotalTime, required this.firstcurrent, required this.secondcurrent, required this.thirdcurrent, required this.voltage})
+      : super(key: key);
 
   @override
   State<Bill> createState() => _BillState();
@@ -70,8 +70,8 @@ class _BillState extends State<Bill> {
           child:
           Container(
             color: Colors.white,
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.9,
+            width: MediaQuery.of(context).size.width * 0.9,
             padding: const EdgeInsets.all(15),
             margin: const EdgeInsets.all(15),
             child: Column(
@@ -109,9 +109,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Time Duration : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                         ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -129,9 +129,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Current Consumption :',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -149,9 +149,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Power Consumption (WHRS) : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -169,9 +169,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Unit Power : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -194,12 +194,12 @@ class _BillState extends State<Bill> {
                 const SizedBox(height: 10,),
                 Row(
                   children: [
-                     Text(
+                    Text(
                       'Time Duration : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                         ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -217,9 +217,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Current Consumption :',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -237,13 +237,13 @@ class _BillState extends State<Bill> {
                     Text(
                       'Power Consumption (WHRS) : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                     (widget.voltage * widget.secondcurrent * widget.secondTotalTime).toStringAsFixed(5),
+                      (widget.voltage * widget.secondcurrent * widget.secondTotalTime).toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -257,9 +257,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Unit Power : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                         ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -271,7 +271,7 @@ class _BillState extends State<Bill> {
                     ),
                   ],
                 ),
-               const SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Text(
                   'Device 3',
                   style: TextStyle(
@@ -285,8 +285,8 @@ class _BillState extends State<Bill> {
                     Text(
                       'Time Duration : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(width: 5,),
@@ -305,9 +305,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Current Consumption :',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     SizedBox(width: 5,),
                     Text(
@@ -325,9 +325,9 @@ class _BillState extends State<Bill> {
                     Text(
                       'Power Consumption (WHRS) : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
@@ -345,13 +345,13 @@ class _BillState extends State<Bill> {
                     Text(
                       'Unit Power : ',
                       style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                        color: Colors.grey.shade600,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                     thirdunit.toStringAsFixed(5),
+                      thirdunit.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -382,7 +382,7 @@ class _BillState extends State<Bill> {
                 const SizedBox(height: 20,),
                 Container(
                   margin: const EdgeInsets.all(10),
-                 padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
                   color: Colors.transparent,
                   child: TextButton(
                     style: ButtonStyle(
@@ -394,15 +394,15 @@ class _BillState extends State<Bill> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         )),
-                      child: const Center(
-                        child: Text(
-                          'Download Bill',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold),
-                        ),
+                    child: const Center(
+                      child: Text(
+                        'Download Bill',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       ),
+                    ),
                     onPressed: () async{
                       final controller = ScreenshotController();
                       final bytes = await controller.captureFromWidget(

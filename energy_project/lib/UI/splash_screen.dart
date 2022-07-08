@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'login.dart';
@@ -15,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pop(context);
       Navigator.push(
           context,
@@ -31,23 +30,14 @@ class _SplashScreenState extends State<SplashScreen> {
       alignment: Alignment.center,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      color:  Colors.white,
+      color:  Colors.lightBlueAccent,
       child: AnimatedTextKit(
         animatedTexts: [
           WavyAnimatedText('SMART HOME'
             , textStyle: const TextStyle(
-              fontSize: 32.0,
+                fontSize: 32.0,
                 decoration: TextDecoration.none,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontFamily: 'RobotoSlab'
-            ),
-          ),
-          WavyAnimatedText('SMART LIFE'
-            , textStyle: const TextStyle(
-              fontSize: 32.0,
-                decoration: TextDecoration.none,
-              fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontFamily: 'RobotoSlab'
             ),
