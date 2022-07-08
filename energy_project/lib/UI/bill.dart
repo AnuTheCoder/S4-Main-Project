@@ -37,7 +37,7 @@ class _BillState extends State<Bill> {
     super.initState();
   }
 
-  List downloadBill = [ 29,30,31 ];
+  List downloadBill = [ 8,9,10,11,12,13,14,15,29,30,31 ];
 
   Uint8List? image;
 

@@ -273,13 +273,13 @@ class _HomePageState extends State<HomePage> {
                             ),
                             alignment: Alignment.center,
                             child:  Icon(
-                                Icons.laptop_mac_outlined,
+                                Icons.mode_fan_off_rounded,
                               size: 50,
                               color: (secondButton == false)?Colors.grey:Colors.blue,
                             ),
                           ),
                           const Text(
-                            'IRON BOX',
+                            'FAN',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
