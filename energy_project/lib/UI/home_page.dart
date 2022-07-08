@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const Text(
-                            'Device 1',
+                            BULB',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -279,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const Text(
-                            'Device 2',
+                            'IRON BOX',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -402,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const Text(
-                        'Device 3',
+                        'CHARGING',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
