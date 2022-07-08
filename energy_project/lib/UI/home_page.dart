@@ -87,9 +87,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     firebaseData();
     return Scaffold(
-      backgroundColor: const Color(0xfff7f7f7),
+      backgroundColor: const Color(0xff4c99b6),
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade900,
         elevation: 5,
         title: const Text('SMART HOME',
           style: TextStyle(
@@ -506,7 +506,7 @@ class _HomePageState extends State<HomePage> {
                 child: TextButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.blue.shade900),
+                          Colors.cyan.shade900),
                       shape:
                       MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
