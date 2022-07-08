@@ -1,4 +1,8 @@
+import 'dart:typed_data';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter/material.dart';
+import 'package:screenshot/screenshot.dart';
+
 
 class Bill extends StatefulWidget {
 
@@ -22,6 +26,28 @@ class _BillState extends State<Bill> {
   double firstunit = 0.0;
   double secondunit = 0.0;
   double thirdunit = 0.0;
+
+  @override
+  void initState(){
+    setState((){
+      firstunit = ((widget.voltage * widget.firstcurrent * widget.firstTotalTime)/100);
+      secondunit = ((widget.voltage * widget.secondcurrent * widget.secondTotalTime)/100);
+      thirdunit = ((widget.voltage * widget.thirdcurrent * widget.thirdTotalTime)/100);
+    });
+    super.initState();
+  }
+
+  List downloadBill = [ 29,30,31 ];
+
+  Uint8List? image;
+
+  bool billsaved = false;
+
+  _saved() async {
+    final result = await ImageGallerySaver.saveImage(image!);
+    print("File Saved to Gallery");
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +115,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.firstTotalTime}',
+                      widget.firstTotalTime.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -109,7 +135,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.firstcurrent}',
+                      widget.firstcurrent.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -129,7 +155,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.voltage * widget.firstcurrent * widget.firstTotalTime}',
+                      (widget.voltage * widget.firstcurrent * widget.firstTotalTime).toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -149,7 +175,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${(widget.voltage * widget.firstcurrent * widget.firstTotalTime)/100}',
+                      firstunit.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -177,7 +203,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.secondTotalTime}',
+                      widget.secondTotalTime.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -197,7 +223,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.secondcurrent}',
+                      widget.secondcurrent.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -217,7 +243,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.voltage * widget.secondcurrent * widget.secondTotalTime}',
+                     (widget.voltage * widget.secondcurrent * widget.secondTotalTime).toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -237,7 +263,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${(widget.voltage * widget.secondcurrent * widget.secondTotalTime)/100}',
+                      secondunit.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 13,
@@ -265,7 +291,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.thirdTotalTime}',
+                      widget.thirdTotalTime.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -285,7 +311,7 @@ class _BillState extends State<Bill> {
                     ),
                     SizedBox(width: 5,),
                     Text(
-                      '${widget.thirdcurrent}',
+                      widget.thirdcurrent.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -305,7 +331,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${widget.voltage * widget.thirdcurrent * widget.thirdTotalTime}',
+                      (widget.voltage * widget.thirdcurrent * widget.thirdTotalTime).toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -325,7 +351,7 @@ class _BillState extends State<Bill> {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      '${(widget.voltage * widget.thirdcurrent * widget.thirdTotalTime)/100}',
+                     thirdunit.toStringAsFixed(5),
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
@@ -333,40 +359,303 @@ class _BillState extends State<Bill> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 30,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Fixed Charge : ',
+                      'Total Cost (rupees) : ',
                       style: TextStyle(
                           color: Colors.grey.shade600,
-                          fontSize: 13,
-                          ),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
                     ),
-                 const    SizedBox(width: 5,),
-                    const Text(
-                      '35',
-                      style: TextStyle(
+                    Text(
+                      (((firstunit + secondunit + thirdunit)* 3.15) + 71.94 ).toStringAsFixed(5),
+                      style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 14,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20,),
-                Text(
-                  'Total Cost (rupees) : ',
-                  style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  '',
-                  style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                 padding: EdgeInsets.all(10),
+                  color: Colors.transparent,
+                  child: TextButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.blue.shade900),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        )),
+                      child: const Center(
+                        child: Text(
+                          'Download Bill',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    onPressed: () async{
+                      final controller = ScreenshotController();
+                      final bytes = await controller.captureFromWidget(
+                          Material(
+                              child:   Container(
+                                margin: EdgeInsets.all(40),
+                                alignment: Alignment.center,
+                                height: MediaQuery.of(context).size.height,
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Supply :',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        const Text(
+                                          '1 phase',
+                                          style:  TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Total Energy Consumption : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          (firstunit + secondunit + thirdunit).toStringAsFixed(5),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Device 1 : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          firstunit.toStringAsFixed(5),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Device 2 : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          secondunit.toStringAsFixed(5),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Device 3 : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          thirdunit.toStringAsFixed(5),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Total Energy Charges : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          ((firstunit + secondunit + thirdunit) * 3.15).toStringAsFixed(5),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Fixed Charge Amount : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        const Text(
+                                          '70',
+                                          style:  TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Electricity Duty Amount : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        const Text(
+                                          '0.32',
+                                          style:  TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Electricity Surcharge Amount : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        const Text(
+                                          '0.05',
+                                          style:  TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Meter Rent Amount : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        const Text(
+                                          '14.28',
+                                          style:  TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Total Bill Amount : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text(
+                                          (((firstunit + secondunit + thirdunit) * 3.15) + 71.94).toStringAsFixed(5),
+                                          style:  TextStyle(
+                                              color: Colors.blue.shade900,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Date : ',
+                                          style: TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 11,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5,),
+                                        Text('${DateTime.now().day}' + '-' + '${DateTime.now().month}' + '-' '${DateTime.now().year}',
+                                          style:  TextStyle(
+                                            color: Colors.grey.shade600,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                          )
+                      );
+                      setState(() {
+                        this.image = bytes;
+                        billsaved = true;
+                      });
+                      _saved();
+                      Navigator.pop(context, billsaved);
+                    },
+                  ),
                 ),
               ],
             ),

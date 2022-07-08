@@ -39,6 +39,8 @@ dependencies:
   syncfusion_flutter_gauges: ^20.1.61
   shared_preferences: ^2.0.15
   animated_text_kit: ^4.2.2
+  screenshot: ^1.2.3
+  image_gallery_saver: ^1.7.1
 
 dev_dependencies:
   flutter_test:

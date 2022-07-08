@@ -2,7 +2,6 @@ import 'package:energy_project/UI/bill.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   bool firstButton = false;
   bool secondButton = false;
   bool thirdButton = false;
+  bool? billsaved;
 
   DateTime  _firststartTime = DateTime.now();
    DateTime _firstendTime = DateTime.now();
@@ -31,10 +31,6 @@ class _HomePageState extends State<HomePage> {
   double _thirdTotalTime = 0.0;
 
 
-  /*  String tvStartTime = '';
-   double tvTotalTime = 0.0;
-   late SharedPreferences prefs;*/
-
   String sensorData = '';
   String voltage = '';
   String firstCurrent = '';
@@ -43,6 +39,10 @@ class _HomePageState extends State<HomePage> {
   String firstDevice = '';
   String secondDevice = '';
   String thirdDevice = '';
+
+  String firstusage = '0.0';
+  String secondusage = '0.0';
+  String thridusage = '0.0';
 
   DatabaseReference ref = FirebaseDatabase.instance.ref();
 
@@ -72,21 +72,16 @@ class _HomePageState extends State<HomePage> {
       });
     });
 
+
   }
 
   @override
    void initState(){
-   /* getsharePref();*/
+
     super.initState();
   }
 
 
-
-  /*void getsharePref() async{
-    prefs = await SharedPreferences.getInstance();
-    tvStartTime = prefs.getString('tvStartTime');
-    tvTotalTime = prefs.getDouble('tvTotalTime');
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const Text(
-                            'BULB',
+                            'Device 1',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -220,15 +215,9 @@ class _HomePageState extends State<HomePage> {
                                     setState((){
                                       _firstendTime = DateTime.now();
                                     });
-                                    double firsttimeDiff = (_firstendTime.minute + (_firstendTime.second / 60)) -
-                                        (_firststartTime.minute + (_firststartTime.second / 60));
-                                    /* double total = prefs?.getDouble('tvTotalTime');
-                                    double totalTime = total + timeDiff;
-                                    prefs?.setDouble('tvTotalTime', totalTime);
-                                    print(totalTime);*/
+                                    double firsttimeDiff = (_firstendTime.hour + (_firstendTime.minute / 60)) -
+                                        (_firststartTime.hour + (_firststartTime.minute / 60));
                                     _firstTotalTime = _firstTotalTime + firsttimeDiff;
-                                  /* prefs?.setString('tvStartTime', _firststartTime.toString());*/
-
                                     print(_firstTotalTime);
 
                                   }else{
@@ -238,6 +227,8 @@ class _HomePageState extends State<HomePage> {
                                     firstButton = true;
                                     setState((){
                                       _firststartTime = DateTime.now();
+                                      firstusage = firstDevice;
+                                      print(firstusage);
                                     });
                                   }
                                 });
@@ -288,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const Text(
-                            'FAN',
+                            'Device 2',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -328,6 +319,7 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(7),
                                     ),
                                   )),
+
                               onPressed: () {
                                 setState((){
                                   if( secondButton == true){
@@ -335,16 +327,30 @@ class _HomePageState extends State<HomePage> {
                                         .child('device2')
                                         .set(0);
                                     secondButton = false;
-                                    _secondstartTime = DateTime.now();
+                                    setState((){
+                                      _secondendTime = DateTime.now();
+                                    });
+                                    double secondtimeDiff = (_secondendTime.hour + (_secondendTime.minute / 60)) -
+                                        (_secondstartTime.hour + (_secondstartTime.minute / 60));
+                                    /* double total = prefs?.getDouble('tvTotalTime');
+                                    double totalTime = total + timeDiff;
+                                    prefs?.setDouble('tvTotalTime', totalTime);
+                                    print(totalTime);*/
+                                    _secondTotalTime = _secondTotalTime + secondtimeDiff;
+                                    /* prefs?.setString('tvStartTime', _secondstartTime.toString());*/
+
+                                    print(_secondTotalTime);
+
                                   }else{
                                     ref.child('devices')
                                         .child('device2')
                                         .set(1);
                                     secondButton = true;
-                                    _secondendTime = DateTime.now();
-                                    double secondtimeDiff = (_secondendTime.minute + (_secondendTime.second / 60)) -
-                                        (_secondstartTime.minute + (_secondstartTime.second / 60));
-                                    _secondTotalTime = _secondTotalTime + secondtimeDiff;
+                                    setState((){
+                                      _secondstartTime = DateTime.now();
+                                      secondusage = secondDevice;
+                                      print(secondusage);
+                                    });
                                   }
                                 });
                               },
@@ -396,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const Text(
-                        'CHARGING !',
+                        'Device 3',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -436,6 +442,7 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius: BorderRadius.circular(7),
                                 ),
                               )),
+
                           onPressed: () {
                             setState((){
                               if( thirdButton == true){
@@ -443,16 +450,30 @@ class _HomePageState extends State<HomePage> {
                                     .child('device3')
                                     .set(0);
                                 thirdButton = false;
-                                _thirdstartTime = DateTime.now();
+                                setState((){
+                                  _thirdendTime = DateTime.now();
+                                });
+                                double thirdtimeDiff = (_thirdendTime.hour + (_thirdendTime.minute / 60)) -
+                                    (_thirdstartTime.hour + (_thirdstartTime.minute / 60));
+                                /* double total = prefs?.getDouble('tvTotalTime');
+                                    double totalTime = total + timeDiff;
+                                    prefs?.setDouble('tvTotalTime', totalTime);
+                                    print(totalTime);*/
+                                _thirdTotalTime = _thirdTotalTime + thirdtimeDiff;
+                                /* prefs?.setString('tvStartTime', _thirdstartTime.toString());*/
+
+                                print(_thirdTotalTime);
+
                               }else{
                                 ref.child('devices')
                                     .child('device3')
                                     .set(1);
                                 thirdButton = true;
-                                _thirdendTime = DateTime.now();
-                                double thirdtimeDiff = (_thirdendTime.minute + (_thirdendTime.second / 60)) -
-                                    (_thirdstartTime.minute + (_thirdstartTime.second / 60));
-                                _thirdTotalTime = _thirdTotalTime + thirdtimeDiff;
+                                setState((){
+                                  _thirdstartTime = DateTime.now();
+                                  thridusage = thirdDevice;
+                                  print(thridusage);
+                                });
                               }
                             });
                           },
@@ -492,14 +513,22 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       )),
-                  onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> Bill(
+                  onPressed: () async{
+                    if(billsaved == true){
+                      setState((){
+                        _firstTotalTime = 0.0;
+                        _secondTotalTime = 0.0;
+                        _thirdTotalTime = 0.0;
+                        billsaved = false;
+                      });
+                    }
+                  billsaved = await Navigator.push(context, MaterialPageRoute(builder: (context)=> Bill(
                      firstTotalTime: _firstTotalTime,
                      secondTotalTime: _secondTotalTime,
                      thirdTotalTime: _thirdTotalTime,
-                     firstcurrent: double.parse(firstDevice),
-                     secondcurrent: double.parse(secondDevice),
-                     thirdcurrent: double.parse(thirdDevice),
+                     firstcurrent: double.parse(firstusage),
+                     secondcurrent: double.parse(secondusage),
+                     thirdcurrent: double.parse(thridusage),
                      voltage: exactVoltage,
 
                    )
@@ -528,3 +557,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
