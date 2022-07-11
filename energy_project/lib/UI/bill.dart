@@ -30,9 +30,9 @@ class _BillState extends State<Bill> {
   @override
   void initState(){
     setState((){
-      firstunit = ((widget.voltage * widget.firstcurrent * widget.firstTotalTime)/100);
-      secondunit = ((widget.voltage * widget.secondcurrent * widget.secondTotalTime)/100);
-      thirdunit = ((widget.voltage * widget.thirdcurrent * widget.thirdTotalTime)/100);
+      firstunit = ((widget.voltage * widget.firstcurrent * widget.firstTotalTime)/1000);
+      secondunit = ((widget.voltage * widget.secondcurrent * widget.secondTotalTime)/1000);
+      thirdunit = ((widget.voltage * widget.thirdcurrent * widget.thirdTotalTime)/1000);
     });
     super.initState();
   }
