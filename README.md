@@ -8,10 +8,7 @@ Identify abnormal patterns of energy use , Estimate your energy bill, allowing y
 overall impact of energy use on your wallet. By analyzing the energy consumption user can
 reduce the energy usage in which the application allowed to set a limit for energy consumption.
 Whenever the usage crossed a threshold limit the application will alert the user. Also it provides
-suggestions inorder to reduce the energy consumption. The user also get a E-mail of monthly
-electrical energy consumption. The user can set a time limit to control the lights. With the help of
-current and voltage sensor the user can identify is there any emergency situation arises thereby
-take immediate actions.
+suggestions inorder to reduce the energy consumption. 
 The system is beneficial for electricity saving as it overcomes electricity consumption, which is
 the main target to achieve as unwanted appliances will be automatically switched off according to
 given conditions. It allows to reduce power consumption in home by continuously monitoring the
